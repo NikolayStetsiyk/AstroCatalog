@@ -1,4 +1,4 @@
-package web_app.astrocatalog.DAO;
+package webapp.astrocatalog.DAO;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

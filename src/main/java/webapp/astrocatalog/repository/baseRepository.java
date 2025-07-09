@@ -1,4 +1,4 @@
-package web_app.astrocatalog.repository;
+package webapp.astrocatalog.repository;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;

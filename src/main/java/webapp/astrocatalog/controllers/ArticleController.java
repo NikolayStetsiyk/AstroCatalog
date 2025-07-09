@@ -1,19 +1,12 @@
-package web_app.astrocatalog.controllers;
+package webapp.astrocatalog.controllers;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
-import org.springframework.data.mongodb.repository.Update;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import web_app.astrocatalog.DAO.Article;
-import web_app.astrocatalog.services.Article_Service;
+import webapp.astrocatalog.DAO.Article;
+import webapp.astrocatalog.services.Article_Service;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/")

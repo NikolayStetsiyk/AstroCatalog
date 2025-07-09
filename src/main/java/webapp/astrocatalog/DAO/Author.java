@@ -1,8 +1,7 @@
-package web_app.astrocatalog.DAO;
+package webapp.astrocatalog.DAO;
 
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.repository.NoRepositoryBean;
+import jakarta.validation.constraints.Email;
 
 import java.util.Objects;
 
@@ -10,6 +9,7 @@ import java.util.Objects;
 public class Author {
     private String authorId;
     private String authorName;
+    @Email
     private String authorEmail;
     private String rating;
 

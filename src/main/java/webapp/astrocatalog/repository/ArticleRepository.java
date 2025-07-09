@@ -1,7 +1,7 @@
-package web_app.astrocatalog.repository;
+package webapp.astrocatalog.repository;
 
 import org.springframework.data.mongodb.repository.Query;
-import web_app.astrocatalog.DAO.Article;
+import webapp.astrocatalog.DAO.Article;
 
 
 public interface ArticleRepository extends baseRepository<Article, String> {

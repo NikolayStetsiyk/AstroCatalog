@@ -1,11 +1,9 @@
-package web_app.astrocatalog.services;
+package webapp.astrocatalog.services;
 
-import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import web_app.astrocatalog.DAO.Article;
-import web_app.astrocatalog.repository.ArticleRepository;
+import webapp.astrocatalog.DAO.Article;
+import webapp.astrocatalog.repository.ArticleRepository;
 
 import java.util.List;
 
@@ -18,7 +16,10 @@ public class Article_Service {
     }
 
     public Article CreateArticle(Article article) {
-        return articleRepository.save(article);
+        if (!articleRepository.existsById(article.getId())) {
+            return articleRepository.save(article);
+        }
+        return  null;
     }
 
     @Transactional
@@ -34,6 +35,7 @@ public class Article_Service {
         return articleRepository.save(article);
     }
 
+    
     public Article GetArticleByTitle(String title) {
 
         return articleRepository.findByTitleContainingIgnoreCase(title);

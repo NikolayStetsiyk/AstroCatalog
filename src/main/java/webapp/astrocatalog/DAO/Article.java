@@ -1,6 +1,7 @@
-package web_app.astrocatalog.DAO;
+package webapp.astrocatalog.DAO;
 
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -13,8 +14,11 @@ import java.util.Objects;
 public class Article extends BaseEntity<String> {
 
     @Id
+    @NotNull
     private String id;
+    @NotNull
     private String title;
+    @NotNull
     @Field("authors")
     private List<Author> authors;
     private List<String> tags;

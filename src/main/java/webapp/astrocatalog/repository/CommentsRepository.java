@@ -1,6 +1,6 @@
-package web_app.astrocatalog.repository;
+package webapp.astrocatalog.repository;
 
-import web_app.astrocatalog.DAO.Comments;
+import webapp.astrocatalog.DAO.Comments;
 
 public interface CommentsRepository extends baseRepository<Comments, String> {
 }

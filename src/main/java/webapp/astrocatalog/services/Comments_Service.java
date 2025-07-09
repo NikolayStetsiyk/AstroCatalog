@@ -1,7 +1,6 @@
-package web_app.astrocatalog.services;
+package webapp.astrocatalog.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import web_app.astrocatalog.repository.CommentsRepository;
+import webapp.astrocatalog.repository.CommentsRepository;
 
 public class Comments_Service  {
 

@@ -1,7 +1,13 @@
-package web_app.astrocatalog.DAO;
+package webapp.astrocatalog.DAO;
+
+import jakarta.validation.constraints.NotNull;
+import org.springframework.boot.context.properties.bind.Name;
 
 public class commentAuthor {
+
+    @NotNull
     private String id;
+    @NotNull
     private String username;
 
     public String getId() {
