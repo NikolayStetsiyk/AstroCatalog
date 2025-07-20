@@ -2,15 +2,23 @@ package webapp.astrocatalog.DAO;
 
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 
 
 public class Author {
+
+    @NotNull
+    @NotBlank
     private String authorId;
+    @NotNull
     private String authorName;
     @Email
+    @NotNull
     private String authorEmail;
+    @NotNull
     private String rating;
 
     public String getAuthorId() {

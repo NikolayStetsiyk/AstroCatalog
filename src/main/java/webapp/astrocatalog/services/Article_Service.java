@@ -1,7 +1,9 @@
 package webapp.astrocatalog.services;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import webapp.astrocatalog.DAO.Article;
 import webapp.astrocatalog.repository.ArticleRepository;
 
@@ -18,8 +20,9 @@ public class Article_Service {
     public Article CreateArticle(Article article) {
         if (!articleRepository.existsById(article.getId())) {
             return articleRepository.save(article);
+        }else {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Article already exists");
         }
-        return  null;
     }
 
     @Transactional
@@ -27,23 +30,40 @@ public class Article_Service {
 
         boolean exists = articleRepository.existsById(id);
         if (!exists) {
-            return null;
-        }
-        if (articleRepository.existsById(id)) {
-            return articleRepository.save(article);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Article not found");
         }
         return articleRepository.save(article);
     }
 
-    
     public Article GetArticleByTitle(String title) {
+        if (title == null || title.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Title is empty");
+        }
 
-        return articleRepository.findByTitleContainingIgnoreCase(title);
+        Article result = articleRepository.findByTitleContainingIgnoreCase(title);
+        if (result == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Article with this title not found");
+        }
+
+            return articleRepository.findByTitleContainingIgnoreCase(title);
+
+    }
+
+    public Article GetArticleById(String id) {
+        if (!articleRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Article with such ID not found");
+        }
+        return articleRepository.findById(id).get();
     }
 
     public List<Article> getAllArticles() {
 
-        return articleRepository.findAll();
+        try {
+            return articleRepository.findAll();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "no articles found");
+        }
+
     }
 
     public void DeleteAllArticles() {
@@ -51,10 +71,11 @@ public class Article_Service {
     }
 
     public void DeleteArticleById(String id) {
+        if (!articleRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Article with such ID not found");
+        }
         articleRepository.deleteById(id);
     }
 
-    public Article GetArticleById(String id) {
-        return articleRepository.findById(id).get();
-    }
+
 }

@@ -1,6 +1,7 @@
 package webapp.astrocatalog.DAO;
 
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,15 +17,21 @@ public class Article extends BaseEntity<String> {
     @Id
     @NotNull
     private String id;
-    @NotNull
+    @NotNull (message = "not empty parametr")
+    @NotBlank (message = "title is mandatory")
     private String title;
     @NotNull
     @Field("authors")
     private List<Author> authors;
     private List<String> tags;
+
+    @NotNull
     private String content;
+    @NotNull
     private String createdAT;
+    @NotNull
     private String updatedAT;
+    @NotNull
     private String commentid;
 
     public String getCreatedAT() {
